@@ -1,5 +1,7 @@
 import express from "express";
 
+import { users } from "../../users.js";
+
 //import { sendQuery } from "../../db/conn.js";
 
 const authRouter = express.Router();
@@ -25,27 +27,7 @@ authRouter.post("/signin", async (req, res) => {
         return res.status(401).json({ message: "Invalid credentials" });
     }
     */
-    // currently, hardcoded user data
-    const users = {
-        1: {
-            name: "User1",
-            email: "user1@gmail.com",
-            password: "user1",
-            balance: 1000
-        },
-        2:{
-            name: "User2",
-            email: "user2@gmail.com",
-            password: "user2",
-            balance: 1000
-        },
-        3: {
-            name: "User3",
-            email: "user3@gmail.com",
-            password: "user3",
-            balance: 1000
-        }
-    };
+    // currently, hardcoded user data imported from users.js
     // find user
     for (const userId of users) {
         if (users[userId].email == email && users[userId].password == password) {
