@@ -26,33 +26,33 @@ authRouter.post("/signin", async (req, res) => {
     }
     */
     // currently, hardcoded user data
-    const users = [
-        {
+    const users = {
+        1: {
             name: "User1",
             email: "user1@gmail.com",
             password: "user1",
             balance: 1000
         },
-        {
+        2:{
             name: "User2",
             email: "user2@gmail.com",
             password: "user2",
             balance: 1000
         },
-        {
+        3: {
             name: "User3",
             email: "user3@gmail.com",
             password: "user3",
             balance: 1000
         }
-    ];
+    };
     // find user
-    for (const user of users) {
-        if (user.email == email && user.password == password) {
+    for (const userId of users) {
+        if (users[userId].email == email && users[userId].password == password) {
             // login success, send name and balance
             return res.status(200).json({
-                name: user.name,
-                balance: user.balance
+                name: users[userId].name,
+                balance: users[userId].balance
             });
         }
     }
