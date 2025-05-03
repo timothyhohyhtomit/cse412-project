@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { SERVER_URL } from "../config.js";
 
-function HomePage({ user, setUser }) {
+function HomePage() {
     // states
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
