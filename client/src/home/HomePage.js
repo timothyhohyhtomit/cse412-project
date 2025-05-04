@@ -57,6 +57,8 @@ function HomePage() {
     return (
         <div>
             <h2>Welcome, {localStorage.getItem("user_name") || "guest"}!</h2>
+            { localStorage.getItem("user_balance") && <div className="home-balance">Your balance: {localStorage.getItem("user_balance")}</div> }
+            <br />
             <div class="home-buttons">
                 { !localStorage.getItem("user_name") && <button class="home-button" onClick={(e) => setShowSignIn(true)}>Sign In</button> }
                 { localStorage.getItem("user_name") && <a href="/pay"><button class="home-button">Payment</button></a> }
