@@ -1,10 +1,10 @@
 /* User table */
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(30) NOT NULL,
-    balance DECIMAL(10, 2) DEFAULT 0.00,
+    balance DECIMAL(10, 2) DEFAULT 0.00
 );
 
 /* Transaction table */
@@ -22,9 +22,9 @@ CREATE TABLE IF NOT EXISTS transactions (
 INSERT INTO users (name, email, password, balance) VALUES
 ('User1', 'user1@gmail.com', 'user1', 1000.00);
 INSERT INTO users (name, email, password, balance) VALUES
-('User2', 'user1@gmail.com', 'user1', 1000.00);
+('User2', 'user2@gmail.com', 'user2', 1000.00);
 INSERT INTO users (name, email, password, balance) VALUES
-('User3', 'user1@gmail.com', 'user1', 1000.00);
+('User3', 'user3@gmail.com', 'user3', 1000.00);
 INSERT INTO transactions (payer_id, payee_id, amount) VALUES
 (1, 2, 100.00);
 INSERT INTO transactions (payer_id, payee_id, amount) VALUES
