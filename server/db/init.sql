@@ -58,3 +58,36 @@ UPDATE users
 SET balance = balance - 100
 WHERE name = 'User1';
 
+/* Test case 7: process payment requests using user-defined functions */
+/*
+CREATE FUNCTION transfer(payer_id INT, payee_email VARCHAR, amount DECIMAL)
+RETURNS BOOLEAN AS $$
+DECLARE
+    payer_balance DECIMAL;
+    payee_balance DECIMAL;
+    payee_id INT;
+    ret BOOLEAN := false;
+BEGIN
+    -- Get payer's current balance
+    SELECT balance INTO payer_balance FROM users WHERE id = payer_id;
+    -- Check if payer has enough balance
+    IF payer_balance >= amount THEN
+        -- Get payee's ID and balance
+        SELECT id, balance INTO payee_id, payee_balance FROM users WHERE email = payee_email;
+        -- Deduct amount from payer
+        UPDATE users SET balance = balance - amount WHERE id = payer_id;
+        -- Add amount to payee
+        UPDATE users SET balance = balance + amount WHERE id = payee_id;
+        -- Record transaction
+        INSERT INTO transactions (payer_id, payee_id, amount)
+        VALUES (payer_id, payee_id, amount);
+        ret := true;
+    END IF;
+    RETURN ret;
+END;
+$$ LANGUAGE plpgsql;
+*/
+
+SELECT transfer(1, 'user2@gmail.com', 100);
+
+
