@@ -29,10 +29,11 @@ authRouter.post("/signin", async (req, res) => {
     */
     // currently, hardcoded user data imported from users.js
     // find user
-    for (const userId of users) {
+    for (const userId of Object.keys(users)) {
         if (users[userId].email == email && users[userId].password == password) {
             // login success, send name and balance
             return res.status(200).json({
+                id: userId,
                 name: users[userId].name,
                 balance: users[userId].balance
             });
