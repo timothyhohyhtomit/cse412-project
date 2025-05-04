@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authRouter from "./routes/auth/authRouter.js";
-//import paymentRouter from "./routes/payment/paymentRouter.js";
+import paymentRouter from "./routes/payment/paymentRouter.js";
 
 const app = express();
 const PORT = 4000;
@@ -24,7 +24,7 @@ app.use((err, req, res, next) => {
 
 // routers
 app.use("/auth", authRouter);
-//app.use("/payment", paymentRouter);
+app.use("/payment", paymentRouter);
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT ${PORT}`);
