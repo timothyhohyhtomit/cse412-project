@@ -59,8 +59,7 @@ SET balance = balance - 100
 WHERE name = 'User1';
 
 /* Test case 7: process payment requests using user-defined functions */
-/*
-CREATE FUNCTION transfer(payer_id INT, payee_email VARCHAR, amount DECIMAL)
+CREATE OR REPLACE FUNCTION transfer(payer_id INT, payee_email VARCHAR, amount DECIMAL)
 RETURNS BOOLEAN AS $$
 DECLARE
     payer_balance DECIMAL;
@@ -86,8 +85,13 @@ BEGIN
     RETURN ret;
 END;
 $$ LANGUAGE plpgsql;
-*/
 
+BEGIN;
 SELECT transfer(1, 'user2@gmail.com', 100);
+COMMIT;
 
+/* Test case 8: process payment requests using user-defined functions, but payer has insufficient balance */
+BEGIN;
+SELECT transfer(2, 'user3@gmail.com', 99999.99);
+COMMIT;
 
