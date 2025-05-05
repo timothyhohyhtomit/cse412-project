@@ -33,10 +33,10 @@ function PaymentPage() {
         .then((jsonData) => {
             if (jsonData.error) {
                 setMessage(jsonData.error);
-            } else if (jsonData.payerBalance) {
-                setMessage("Payment successful! Your new balance is: " + jsonData.payerBalance);
+            } else if (jsonData.new_balance) {
+                setMessage("Payment successful! Your new balance is: " + jsonData.new_balance);
                 // update user balance in local storage
-                localStorage.setItem("user_balance", jsonData.payerBalance);
+                localStorage.setItem("user_balance", jsonData.new_balance);
             }
         });
     };
